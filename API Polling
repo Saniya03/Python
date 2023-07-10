@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import schedule
 import time
 
-RSS_URL = "https://exchange.xforce.ibmcloud.com/rss/mal"
+RSS_URL = "https://exchange.xforce.ibmcloud.com/rss/mal" 
 
 def poll_xforce_exchange_rss():
     response = requests.get(RSS_URL)
