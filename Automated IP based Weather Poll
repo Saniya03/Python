@@ -1,0 +1,53 @@
+input {
+  http_poller {
+    urls => {
+      weather_api => {
+        method => get
+        url => "https://api.openweathermap.org/data/2.5/weather?q=Raleigh&APPID=08b906e2fdca8df8eef4e35b9c4b0d2e"
+        headers => {
+          Accept => "application/json"
+        }
+      }
+    }
+    schedule => { cron => "*/1 * * * * UTC" }
+    request_timeout => 60
+    codec => json
+  }
+}
+
+filter {
+  mutate {
+    convert => {
+      "[main][temp]" => "float"
+      "[main][humidity]" => "integer"
+    }
+  }
+
+  # Additional filters
+  if [main][temp] > 25 {
+    mutate {
+      add_field => { "weather_status" => "hot" }
+    }
+  } else {
+    mutate {
+      add_field => { "weather_status" => "normal" }
+    }
+  }
+
+  if [main][humidity] < 50 {
+    mutate {
+      add_field => { "humidity_status" => "low" }
+    }
+  } else {
+    mutate {
+      add_field => { "humidity_status" => "high" }
+    }
+  }
+}
+
+output {
+  stdout {
+    codec => rubydebug
+  }
+}
+
