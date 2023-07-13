@@ -1,4 +1,7 @@
-  GNU nano 7.1                                           NVD.py                                                     
+#use https://nvd.nist.gov/developers/vulnerabilities create a python script polling CVE cvssV2Severity for high. 
+#Parameter: https://services.nvd.nist.gov/rest/json/cves/2.0?cvssV3Severity=HIGH 
+
+GNU nano 7.1                                           NVD.py                                                     
 import requests
 
 API_KEY = "d36bd822-65c8-45cc-b4e1-e95c8ac2da1e"
