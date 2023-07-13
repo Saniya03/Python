@@ -25,4 +25,9 @@ def get_high_severity_cves():
 
 get_high_severity_cves()
 
+#line 19 - cve.get("impact", {}): retrieves the "impact" section from the CVE data. This section contains information about the vulnerability's impact, including the baseMetricV2 object.
+#.get("baseMetricV2", {}): extracts the "baseMetricV2" object from the impact section. It contains the CVSSv2-related information, including the CVSSv2 score.
+#.get("cvssV2", {}): retrieves the "cvssV2" object from the baseMetricV2 section, which contains the CVSSv2 score.
+#.get("baseScore"): fetches the actual CVSSv2 base score from the cvssV2 object.
+
 
